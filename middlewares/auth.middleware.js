@@ -1,5 +1,5 @@
 function checkLogin(req, res, next) {
-  if (!req.session.currentUserId) return res.redirect("/login");
+  if (req.session && !req.session.currentUserId) return res.redirect("/login");
   next();
 }
 

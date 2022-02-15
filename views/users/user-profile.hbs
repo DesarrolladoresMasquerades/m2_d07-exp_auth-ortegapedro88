@@ -1,16 +1,4 @@
-{{! views/users/user-profile.hbs }}
 
-{{!-- {{#if user}}
-  <h2>Welcome, {{ user.username }}!</h2>
-  <p>This is your profile page my friend!</p>
-  <button>
-    <a href="/userProfile">Reload the page</a>
-  </button>
-{{else}}
-  <p>Still no logged in user, sorry!</p>
-{{/if}} --}}
-
-{{! the new version, with the session: }}
 
 {{#if userInSession}}
   <h2>Welcome, {{userInSession.username}}!</h2>
@@ -19,6 +7,7 @@
   <button>
     <a href="/userProfile">Reload the page</a>
   </button>
+  <a href="/edit"><button>EDIT</button></a>
 {{else}}
   <p>Still no logged in user, sorry!</p>
 {{/if}}

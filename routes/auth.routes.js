@@ -108,6 +108,7 @@ router.post("/login", checkAnon, (req, res, next) => {
 
         //******* SAVE THE USER IN THE SESSION ********//
         req.session.currentUserId = user._id;
+        // console.log("before redirect",req.session.currentUserId)
         res.redirect("/userProfile");
       } else {
         // if the two passwords DON'T match, render the login form again
@@ -119,11 +120,19 @@ router.post("/login", checkAnon, (req, res, next) => {
 });
 
 router.get("/userProfile", (req, res) => {
-  res.render("users/user-profile", { userInSession: req.session.currentUser });
+  // console.log("after redirect",req.session.currentUserId)
+  User.findById(req.session.currentUserId)
+  .then((user)=>{
+    
+    res.render("users/user-profile",{userInSession: user})
+  
 });
+})
 
 router.post("/logout", checkLogin, (req, res) => {
   req.session.destroy();
   res.redirect("/");
 });
+
+
 module.exports = router;
